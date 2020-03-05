@@ -8,17 +8,17 @@ export default new Vuex.Store({
     products: []
   },
   getters: { // = computed properties
-    productsCount () {
-      // ...
+    availableProducts(state, getters) {
+      return state.products.filter((product) => product.inventory > 0);
     }
   },
   actions: { // = methods (never update the state!)
-    fetchProducts () {
+    fetchProducts() {
       // make the call
     }
   },
   mutations: { // = setting and updating the state
-    setProducts (state, products) {
+    setProducts(state, products) {
       state.products = products;
     }
   }

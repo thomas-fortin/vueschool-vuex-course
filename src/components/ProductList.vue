@@ -13,14 +13,20 @@ import store from '@/store';
 
 export default {
   computed: {
-    products () {
-      return store.state.products;
+    products() {
+      return store.getters.availableProducts;
     }
   },
-  created () {
+  created() {
     shop.getProducts((products) => {
       store.commit('setProducts', products);
     });
   }
 };
 </script>
+
+<style scoped>
+h1 {
+  text-align: center;
+}
+</style>

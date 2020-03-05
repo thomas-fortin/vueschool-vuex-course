@@ -24,6 +24,8 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     // force semi-colons
-    'semi': ['error', 'always']
+    'semi': ['error', 'always'],
+    // disallow sace before function parenthesis
+    "space-before-function-paren": ["error", "never"],
   }
 }
