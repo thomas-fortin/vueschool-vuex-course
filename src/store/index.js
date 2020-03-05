@@ -34,6 +34,11 @@ export default new Vuex.Store({
       // });
 
       // return total;
+    },
+    productIsInStock() {
+      return (product) => {
+        return product.inventory > 0;
+      };
     }
   },
   actions: { // = methods (never update the state!)
@@ -45,17 +50,17 @@ export default new Vuex.Store({
         });
       });
     },
-    addProductToCart(context, product) {
-      if (product.inventory > 0) {
-        const cartItem = context.state.cart.find((item) => item.id === product.id);
+    addProductToCart({ state, getters, commit }, product) {
+      if (getters.productIsInStock(product)) {
+        const cartItem = state.cart.find((item) => item.id === product.id);
         if (!cartItem) {
           // If we don't already have this kind of product in the cart, push new
-          context.commit('pushProductToCart', product.id);
+          commit('pushProductToCart', product.id);
         } else {
           // Otherwise, we just increment the quantity of it
-          context.commit('incrementCartItemQuantity', cartItem);
+          commit('incrementCartItemQuantity', cartItem);
         }
-        context.commit('decrementProductInventory', product);
+        commit('decrementProductInventory', product);
       }
     },
     checkout({ state, commit }) {
