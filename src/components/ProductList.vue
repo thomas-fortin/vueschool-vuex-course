@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { mapState, mapGetters, mapActions } from 'vuex';
+
 export default {
   data() {
     return {
@@ -22,21 +24,27 @@ export default {
     };
   },
   computed: {
-    products() {
-      return this.$store.state.products;
-    },
-    productIsInStock() {
-      return this.$store.getters.productIsInStock;
-    }
+    // For mapState and mapGetters
+    // This could only be ...mapState() and ...mapGetters()
+    // Because the states and getters have the same names
+    // I have written them here for example
+    // And in case of change in the future, it is more secure
+    ...mapState({
+      products: (state) => state.products
+    }),
+    ...mapGetters({
+      productIsInStock: 'productIsInStock'
+    })
   },
   methods: {
-    addProductToCart(product) {
-      this.$store.dispatch('addProductToCart', product);
-    }
+    ...mapActions({
+      fetchProducts: 'fetchProducts',
+      addProductToCart: 'addProductToCart'
+    })
   },
   created() {
     this.loading = true;
-    this.$store.dispatch('fetchProducts').then(() => {
+    this.fetchProducts().then(() => {
       this.loading = false;
     });
   }
