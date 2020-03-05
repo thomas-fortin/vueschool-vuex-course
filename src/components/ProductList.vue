@@ -29,17 +29,17 @@ export default {
     // Because the states and getters have the same names
     // I have written them here for example
     // And in case of change in the future, it is more secure
-    ...mapState({
-      products: (state) => state.products.items
+    ...mapState('products', {
+      products: (state) => state.items
     }),
-    ...mapGetters({
+    ...mapGetters('products', {
       productIsInStock: 'productIsInStock'
     })
   },
   methods: {
     ...mapActions({
-      fetchProducts: 'fetchProducts',
-      addProductToCart: 'addProductToCart'
+      fetchProducts: 'products/fetchProducts',
+      addProductToCart: 'cart/addProductToCart'
     })
   },
   created() {

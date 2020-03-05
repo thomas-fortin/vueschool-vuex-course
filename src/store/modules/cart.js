@@ -1,6 +1,7 @@
 import shop from '@/api/shop';
 
 export default {
+  namespaced: true,
   state: { // = data
     items: [], // {id, quantity}
     checkoutStatus: null
@@ -46,8 +47,8 @@ export default {
     }
   },
   actions: { // = methods (never update the state!)
-    addProductToCart({ state, getters, commit, rootState }, product) {
-      if (getters.productIsInStock(product)) {
+    addProductToCart({ state, getters, commit, rootState, rootGetters }, product) {
+      if (rootGetters['products/productIsInStock'](product)) {
         const cartItem = state.items.find((item) => item.id === product.id);
         if (!cartItem) {
           // If we don't already have this kind of product in the cart, push new
@@ -56,7 +57,10 @@ export default {
           // Otherwise, we just increment the quantity of it
           commit('incrementCartItemQuantity', cartItem);
         }
-        commit('decrementProductInventory', product);
+        // We add the third argument because otherwise,
+        // Vue will stack the namespaces and look for the mutation at 'cart/products/decrementProductInventory'
+        // Because by default, it's looking in the current namespace, because we are inside a module
+        commit('products/decrementProductInventory', product, { root: true });
       }
     },
     checkout({ state, commit }) {
