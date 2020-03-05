@@ -1,5 +1,7 @@
 /**
  * Mocking client-server processing
+ *
+ * From https://github.com/vuejs/vuex/tree/dev/examples/shopping-cart/api/shop.js
  */
 const _products = [
   {'id': 1, 'title': 'iPad 4 Mini', 'price': 500.01, 'inventory': 0},

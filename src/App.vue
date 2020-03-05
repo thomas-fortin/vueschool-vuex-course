@@ -1,16 +1,20 @@
 <template>
   <div id="app">
     <ProductList />
+    <div class="separator"></div>
+    <ShoppingCart />
   </div>
 </template>
 
 <script>
 import ProductList from '@/components/ProductList';
+import ShoppingCart from '@/components/ShoppingCart';
 
 export default {
   name: 'app',
   components: {
-    ProductList
+    ProductList,
+    ShoppingCart
   }
 };
 </script>
@@ -22,5 +26,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   margin-top: 60px;
+}
+.separator {
+  border: 1px solid #ccc;
+  margin: 2em 4em;
 }
 </style>

@@ -3,7 +3,10 @@
     <h1>Product List</h1>
     <img class="d-block m-auto" v-if="loading" src="https://i.imgur.com/JfPpwOA.gif"/>
     <ul v-else>
-      <li v-for="(product, index) in products" :key="index">{{ product.title }} ({{ product.price }})</li>
+      <li v-for="(product, index) in products" :key="index">
+        {{ product.title }} - {{ product.price | currency }} ({{ product.inventory }})
+        <button @click="addProductToCart(product)">Add to cart</button>
+      </li>
     </ul>
   </div>
 </template>
@@ -18,6 +21,11 @@ export default {
   computed: {
     products() {
       return this.$store.getters.availableProducts;
+    }
+  },
+  methods: {
+    addProductToCart(product) {
+      this.$store.dispatch('addProductToCart', product);
     }
   },
   created() {
@@ -38,5 +46,12 @@ h1 {
 }
 .m-auto {
   margin: auto;
+}
+li {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+button {
+  margin-left: 0.5em;
 }
 </style>
