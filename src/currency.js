@@ -1,3 +1,8 @@
+/**
+ * Filter class to add currency on integer.
+ *
+ * From https://github.com/vuejs/vuex/blob/dev/examples/shopping-cart/currency.js
+ */
 const digitsRE = /(\d{3})(?=\d)/g;
 
 export function currency(value, currency, decimals) {
