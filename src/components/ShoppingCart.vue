@@ -22,7 +22,7 @@ import { mapGetters, mapState, mapActions } from 'vuex';
 export default {
   computed: {
     ...mapState({
-      checkoutStatus: 'checkoutStatus'
+      checkoutStatus: (state) => state.cart.checkoutStatus
     }),
     ...mapGetters({
       products: 'cartProducts',

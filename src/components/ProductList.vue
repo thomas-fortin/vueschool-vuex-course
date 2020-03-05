@@ -30,7 +30,7 @@ export default {
     // I have written them here for example
     // And in case of change in the future, it is more secure
     ...mapState({
-      products: (state) => state.products
+      products: (state) => state.products.items
     }),
     ...mapGetters({
       productIsInStock: 'productIsInStock'
