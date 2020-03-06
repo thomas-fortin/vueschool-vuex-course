@@ -9,7 +9,7 @@
     <p>
       <b>Total:</b> {{ total | currency }}
       <button @click="checkout">Checkout</button>
-      <p v-if="checkoutStatus ">
+      <p v-if="checkoutStatus">
         {{ checkoutStatus }}
       </p>
     </p>

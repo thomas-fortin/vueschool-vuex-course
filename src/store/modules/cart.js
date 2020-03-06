@@ -9,7 +9,7 @@ export default {
   getters: { // = computed properties
     cartProducts(state, getters, rootState) {
       return state.items.map((cartItem) => {
-        const product = rootState.products.items.find(product => product.id === cartItem.id);
+        const product = rootState.products.items.find((product) => product.id === cartItem.id);
 
         return {
           title: product.title,
